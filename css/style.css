@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
+@font-face {
+  font-family: "Cooper Hewitt";
+  src: url("cooper-hewitt.heavy.otf") format("opentype");
+}
+body {
+  font-family: Raleway !important;
+}
+.title {
+  font-family: "Cooper Hewitt", Arial, sans-serif !important;
+}
+.subtitle {
+  font-family: Raleway !important;
+  font-style: normal !important;
+}
+#googleMap {
+  width: 80%;
+  height: 400px;
+  margin: 20px auto;
+}
+#maps,
+#results {
+  display: none;
+}
+.submit {
+  visibility: hidden;
+}
