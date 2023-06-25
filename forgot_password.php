@@ -10,10 +10,10 @@ include('dbconn.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
-require 'admin/vendor/autoload.php';
-require_once 'admin/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require_once 'admin/vendor/phpmailer/phpmailer/src/SMTP.php';
-require_once 'admin/vendor/phpmailer/phpmailer/src/Exception.php';
+require 'super_admin/vendor/autoload.php';
+require_once 'super_admin/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require_once 'super_admin/vendor/phpmailer/phpmailer/src/SMTP.php';
+require_once 'super_admin/vendor/phpmailer/phpmailer/src/Exception.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -47,16 +47,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ';
 
       try {
-        $mail = new PHPMailer;
-        $mail->Host = 'smtp.gmail.com';
-        $mail->isSMTP();
-        $mail->SMTPAuth = true;
-        $mail->Username = 'paytest432@gmail.com'; // Gmail address which you want to use as SMTP server
-        $mail->Password = 'qwerty1234!@#$%'; // Gmail address Password // Gmail address Password
-        $mail->Port = 465; //587
-        $mail->SMTPSecure = 'ssl'; //tls
+        $phpmailer = new PHPMailer();
+        $phpmailer->isSMTP();
+        $phpmailer->Host = 'live.smtp.mailtrap.io';
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Port = 587;
+        $phpmailer->Username = 'api';
+        $phpmailer->Password = '00cdc0a4c48e5c6c34935b00ad36536f';
         $mail->addAddress($email); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
-        $mail->setFrom('fiwithbitcoin@gmail.com', 'Reset Password'); // Gmail address which you used as SMTP server
+        $mail->setFrom('hello@ecodemy.ca', 'Ecodemy WalkIT Reset Password'); // Gmail address which you used as SMTP server
         //$mail->SMTPDebug = 2;
         $mail->isHTML(true);
         $mail->Subject = 'password reset link';

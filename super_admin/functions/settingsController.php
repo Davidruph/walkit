@@ -8,17 +8,17 @@ if (isset($_SESSION['user'])) {
   $id = $_SESSION['user'];
 
   // Update user details
-  if (isset($_POST['submit']) && isset($_POST['admin'])) {
-    $admin = sanitizeInput($_POST['admin']);
+  if (isset($_POST['update_btn'])) {
+    $name = sanitizeInput($_POST['name']);
     $email = sanitizeInput($_POST['email']);
     $role = sanitizeInput($_POST['role']);
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $errors['email'] = "Email is invalid";
     } else {
-      $sql = 'UPDATE users SET names=:admin, email=:email, role=:role WHERE user_id=:id';
+      $sql = 'UPDATE users SET names=:name, email=:email, role=:role WHERE user_id=:id';
       $statement = $connection->prepare($sql);
-      $statement->execute([':admin' => $admin, ':email' => $email, ':role' => $role, ':id' => $id]);
+      $statement->execute([':name' => $name, ':email' => $email, ':role' => $role, ':id' => $id]);
 
       if ($statement->rowCount() > 0) {
         $success['data'] = "Your details have been updated successfully";
@@ -47,7 +47,7 @@ if (isset($_SESSION['user'])) {
 
         if ($statement->rowCount() > 0) {
           session_destroy();
-          header('Location: ../signin.php');
+          header('Location: ../signin');
           exit();
         }
       } else {

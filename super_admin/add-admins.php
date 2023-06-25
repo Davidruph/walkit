@@ -1,12 +1,10 @@
 <?php
-include('functions/add_admins_Controller.php');
-?>
-
-<?php
 //All header tag to be included
 include('include/header.php');
 ?>
-
+<?php
+include('functions/add_admins_Controller.php');
+?>
 <?php
 //sidebar tag to be included
 include('include/sidebar.php');
@@ -56,7 +54,8 @@ include('include/sidebar.php');
 
                         <div class="col">
                             <label for="full_name">Select role</label>
-                            <select name="role" class="form-control">
+                            <select name="role" class="form-control" required>
+                                <option value="">select</option>
                                 <option value="super_admin">Super Admin</option>
                                 <option value="admin">Admin</option>
                             </select>

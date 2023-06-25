@@ -48,7 +48,7 @@
            <?php if (!empty($logo)) {
             ?>
              <div class="justify-content-center">
-               <img src="admin/uploads/<?= $logo ?>" class="img-fluid mx-auto d-block mb-2" width="100" height="50" alt="company logo">
+               <img src="admin/<?= $logo ?>" class="img-fluid mx-auto d-block mb-2" width="100" height="50" alt="company logo">
              </div>
 
            <?php

@@ -57,13 +57,13 @@ include('include/sidebar.php');
     ?>
 
     <div class="card-box">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <form class="form-horizontal" method="post" autocomplete="off" action="settings.php">
 
           <div class="row mb-3">
             <div class="col">
               <label for="full_name">Full Name</label>
-              <input type="text" class="form-control" value="<?= $name ?>" name="admin" required>
+              <input type="text" class="form-control" value="<?= $name ?>" name="name" required>
             </div>
 
             <div class="col">
@@ -76,6 +76,7 @@ include('include/sidebar.php');
             <div class="col">
               <label for="full_name">Change role</label>
               <select name="role" id="" class="form-control">
+                <option value="">select role</option>
                 <option value="super_admin" <?php if ($role == 'super_admin') { ?> selected <?php }  ?>>Super Admin</option>
                 <option value="admin" <?php if ($role == 'admin') { ?> selected <?php }  ?>>Admin</option>
               </select>
@@ -84,7 +85,7 @@ include('include/sidebar.php');
 
           <div class="row mt-4">
             <div class="col">
-              <button type="submit" class="btn btn-primary btn-block" name="submit">
+              <button type="submit" class="btn text-white btn-block" name="update_btn">
                 Update
               </button>
             </div>
@@ -92,7 +93,7 @@ include('include/sidebar.php');
 
           <hr class="mt-5 mb-4 border-dark">
           <p>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn text-white" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
               Change Password
             </a>
           </p>
@@ -110,7 +111,7 @@ include('include/sidebar.php');
                 </div>
               </div>
 
-              <button type="submit" name="password_change" class="btn btn-primary">Change Pawword</button>
+              <button type="submit" name="password_change" class="btn text-white">Change Password</button>
             </div>
           </div>
 

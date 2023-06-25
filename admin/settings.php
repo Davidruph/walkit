@@ -1,16 +1,4 @@
 <?php
-// Define the base URL based on the environment
-if ($_SERVER['HTTP_HOST'] === 'localhost') {
-  $baseURL = 'http://localhost/';
-} else {
-  $baseURL = 'https://ecodemy.ca/';
-}
-
-// Use the base URL to construct the complete URL for your file
-$fileURL = $baseURL . 'walkit/index.php';
-?>
-
-<?php
 //All header tag to be included
 include('include/header.php');
 ?>
@@ -24,7 +12,17 @@ include('functions/settingsController.php');
 //sidebar tag to be included
 include('include/sidebar.php');
 ?>
+<?php
+// Define the base URL based on the environment
+if ($_SERVER['HTTP_HOST'] === 'localhost') {
+  $baseURL = 'http://localhost/';
+} else {
+  $baseURL = 'https://ecodemy.ca/';
+}
 
+// Use the base URL to construct the complete URL for your file
+$fileURL = $baseURL . 'walkit/index.php';
+?>
 
 <main>
   <div class="container-fluid">
@@ -389,28 +387,36 @@ include('include/sidebar.php');
             </div>
           </div>
 
-          <div class="row mb-3">
-            <div class="col">
-              <label for="exampleFormControlFile1">Logo</label>
-              <?php
-              if (isset($logo)) {
-              ?>
-                <input type="file" class="form-control-file" name="logo" id="exampleFormControlFile1">
-              <?php
-              } else {
-              ?>
-                <input type="file" class="form-control-file" name="logo" id="exampleFormControlFile1" required>
-              <?php
-              }
-              ?>
+          <div class="row mb-4 pt-2">
+            <?php
+            if (isset($logo)) {
+            ?>
+              <div class="col">
+                <label for="exampleFormControlFile1">Logo</label> <br>
 
-            </div>
+
+                <img src="<?= $logo ?>" class="img-fluid" alt="" width="200" height="100">
+              </div>
+              <div class="col">
+                <label for="exampleFormControlFile1">Upload new logo</label>
+                <input type="file" class="form-control-file" name="logo" id="exampleFormControlFile1" accept="image/*">
+              </div>
+            <?php
+            } else {
+            ?>
+              <div class="col">
+                <input type="file" class="form-control-file" name="logo" id="exampleFormControlFile1" accept="image/*" required>
+              </div>
+            <?php
+            }
+            ?>
+
 
           </div>
 
           <div class="row mt-3">
             <div class="col">
-              <button type="submit" class="btn btn-block text-white" name="submit">
+              <button type="submit" class="btn btn-block text-white" name="admin_btn">
                 Update
               </button>
             </div>

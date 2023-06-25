@@ -19,11 +19,11 @@ include 'loginController.php';
 <body>
 
   <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center pb-5">
       <div class="col-lg-5">
         <h2 class="text-center text-color mb-0 mt-5 title text-uppercase">Eco<span class="secondary-color">demy</span> WalkIT™</h2>
         <p class="text-center lead subtitle text-color text-uppercase">Active Transit Carbon Calculator</p>
-        <h1 class="text-center text-color mt-5 mb-3 text-uppercase">Sign in to Account</h1>
+        <h1 class="text-center text-color mt3 mb-3 text-uppercase">Sign in to Account</h1>
         <?php if (count($errors) > 0) : ?>
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <?php foreach ($errors as $error) : ?>

@@ -6,27 +6,77 @@ $success = array();
 
 if (isset($_SESSION['user'])) {
   $id = $_SESSION['user'];
+  $role =  $_SESSION['role'];
 
   // Update user details
-  if (isset($_POST['submit']) && isset($_POST['admin'])) {
-    $admin = sanitizeInput($_POST['admin']);
+  if (isset($_POST['admin_btn'])) {
+    $url = sanitizeInput($_POST['url']);
+    $name = sanitizeInput($_POST['name']);
     $email = sanitizeInput($_POST['email']);
-    $role = sanitizeInput($_POST['role']);
+    $company_name = sanitizeInput($_POST['company_name']);
+    $address = sanitizeInput($_POST['address']);
+    $country = sanitizeInput($_POST['country']);
+    $mobile_code = sanitizeInput($_POST['mobile_code']);
+    $mobile = sanitizeInput($_POST['mobile']);
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $errors['email'] = "Email is invalid";
     } else {
-      $sql = 'UPDATE users SET names=:admin, email=:email, role=:role WHERE user_id=:id';
-      $statement = $connection->prepare($sql);
-      $statement->execute([':admin' => $admin, ':email' => $email, ':role' => $role, ':id' => $id]);
+      // Generate a unique file name for the logo
+      $logoFileName = uniqid('logo_');
 
-      if ($statement->rowCount() > 0) {
-        $success['data'] = "Your details have been updated successfully";
+      // Check if a logo file was uploaded
+      if (isset($_FILES['logo']) && $_FILES['logo']['tmp_name']) {
+        $logoFile = $_FILES['logo']['tmp_name'];
+        $logoFileExt = pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION);
+        $logoFilePath = 'upload/' . $logoFileName . '.' . $logoFileExt;
+
+        // Move the uploaded logo file to the desired location
+        move_uploaded_file($logoFile, $logoFilePath);
+        $sql = 'UPDATE users SET url=:url, names=:name, email=:email, company_name=:company_name, address=:address, country=:country, mobile_code=:mobile_code, mobile_no=:mobile, logo=:logo WHERE user_id=:id';
+        $statement = $connection->prepare($sql);
+        $statement->execute([
+          ':url' => $url,
+          ':name' => $name,
+          ':email' => $email,
+          ':company_name' => $company_name,
+          ':address' => $address,
+          ':country' => $country,
+          ':mobile_code' => $mobile_code,
+          ':mobile' => $mobile,
+          ':logo' => $logoFilePath, // Use the file path in the query
+          ':id' => $id
+        ]);
+
+        if ($statement->rowCount() > 0) {
+          $success['data'] = "Your details have been updated successfully";
+        } else {
+          $errors['data'] = 'Oops, an error occurred';
+        }
       } else {
-        $errors['data'] = 'Oops, an error occurred';
+        $sql = 'UPDATE users SET url=:url, names=:name, email=:email, company_name=:company_name, address=:address, country=:country, mobile_code=:mobile_code, mobile_no=:mobile WHERE user_id=:id';
+        $statement = $connection->prepare($sql);
+        $statement->execute([
+          ':url' => $url,
+          ':name' => $name,
+          ':email' => $email,
+          ':company_name' => $company_name,
+          ':address' => $address,
+          ':country' => $country,
+          ':mobile_code' => $mobile_code,
+          ':mobile' => $mobile,
+          ':id' => $id
+        ]);
+
+        if ($statement->rowCount() > 0) {
+          $success['data'] = "Your details have been updated successfully";
+        } else {
+          $errors['data'] = 'Oops, an error occurred';
+        }
       }
     }
   }
+
 
   // Change password
   if (isset($_POST['password_change'])) {
@@ -47,7 +97,7 @@ if (isset($_SESSION['user'])) {
 
         if ($statement->rowCount() > 0) {
           session_destroy();
-          header('Location: ../signin.php');
+          header('Location: ../signin');
           exit();
         }
       } else {

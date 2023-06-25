@@ -21,23 +21,30 @@ require 'vendor/phpmailer/phpmailer/src/Exception.php';
 
 //if submit button is clicked and inputs are not empty
 if (isset($_POST['submit'])) {
+    $subject = $_POST['subject'];
     $message = $_POST['message'];
 
-    $mail = new PHPMailer(true);
+    // $mail = new PHPMailer(true);
+    // // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    // $mail->isSMTP();
+    // $mail->Host = 'sandbox.smtp.mailtrap.io';
+    // $mail->SMTPAuth = true;
+    // $mail->Port = 2525;
+    // $mail->Username = 'ecd9ced4b1a7a4';
+    // $mail->Password = '57ef3562c960a4';
 
-    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;            
-    $mail->Host = 'ssl://smtp.gmail.com:465';
-    $mail->isSMTP();
-    $mail->SMTPAuth = true;
-    $mail->Username = 'kaecomp1321@gmail.com'; // Gmail address which you want to use as SMTP server
-    $mail->Password = 'Password123.'; // Gmail address Password
-    $mail->Port = 465; //587
-    $mail->SMTPSecure = 'ssl'; //tls
-    $mail->setFrom('kaecomp1321@gmail.com', 'Updates/Offers'); // Gmail address which you used as SMTP server
-    //$mail->debug = 2;
+    $phpmailer = new PHPMailer();
+    $phpmailer->isSMTP();
+    $phpmailer->Host = 'live.smtp.mailtrap.io';
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->Port = 587;
+    $phpmailer->Username = 'api';
+    $phpmailer->Password = '00cdc0a4c48e5c6c34935b00ad36536f';
+    $mail->setFrom('hello@ecodemy.ca', 'Ecodemy WalkIT'); // Gmail address which you used as SMTP server
     $mail->isHTML(true);
-    $mail->Subject = 'Message Received From (Recipe Site)';
-    $mail->Body = "<p>$message</p>";
+    // $mail->SMTPDebug = 2;
+    $mail->Subject = "$subject";
+    $mail->Body = "$message";
     $mail->AltBody = '';
     foreach ($connection->query($sql) as $row) {
         $mail->AddAddress($row['email']);
@@ -102,7 +109,12 @@ include('include/sidebar.php');
         <div class="card-box">
             <div class="col-md-12">
                 <form class="form-horizontal" name="bulk email" method="post" autocomplete="off" action="all.php">
-
+                    <div class="form-group">
+                        <label class="col-md-6 control-label">Subject</label>
+                        <div class="col-md-10">
+                            <input name="subject" id="subject" class="form-control" required>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Message</label>
                         <div class="col-md-10">

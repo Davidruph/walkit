@@ -52,6 +52,11 @@
             </nav>
           </div>
 
+          <a class="nav-link" href="settings">
+            <div class="sb-nav-link-icon"><i class="fas fa-cog fa-fw"></i></div>
+            Settings
+          </a>
+
         </div>
       </div>
       <div class="sb-sidenav-footer bg-menu">
