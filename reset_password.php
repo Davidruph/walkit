@@ -75,7 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-4">
+      <div class="col-lg-5">
+        <h2 class="text-center text-color mb-0 mt-5 title text-uppercase">Eco<span class="secondary-color">demy</span> WalkIT™</h2>
+        <p class="text-center lead subtitle text-color text-uppercase">Active Transit Carbon Calculator</p>
         <h1 class="text-center text-dark mt-5 mb-4">Password Reset</h1>
         <?php if (count($errors) > 0) : ?>
           <div class="alert alert-danger alert-dismissible fade show" role="alert">

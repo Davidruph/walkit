@@ -83,7 +83,7 @@ include('include/sidebar.php');
 
                     <div class="row mt-4">
                         <div class="col">
-                            <button type="submit" class="btn btn-primary btn-block" name="submit">
+                            <button type="submit" class="btn text-white btn-block" name="submit">
                                 Register
                             </button>
                         </div>

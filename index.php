@@ -35,7 +35,7 @@
    </style>
  </head>
 
- <body class="">
+ <body>
 
    <?php
     if (!empty($id)) {
@@ -43,7 +43,7 @@
 
     ?>
      <div class="container">
-       <div class="row justify-content-center mt-4">
+       <div class="row justify-content-center mt-5">
          <div class="col-lg-6 mb-4">
            <?php if (!empty($logo)) {
             ?>
@@ -54,19 +54,18 @@
            <?php
             } ?>
 
-           <h4 class="text-center text-info mb-0 title">
+           <h4 class="text-center text-color mb-0 title text-uppercase">
              <?php if (!empty($company_name)) {
                 echo $company_name;
               } else {
               ?>
-               Ecodemy WalkIT™
+               Eco<span class="secondary-color">demy</span> WalkIT™
 
              <?php
               }
               ?>
            </h4>
-           <p class="text-center mb-4 subtitle">Active Transit Carbon Calculator</p>
-
+           <p class="text-center lead subtitle mb-4 text-color text-uppercase">Active Transit Carbon Calculator</p>
 
            <div class="w-100 shadow trans card">
              <form class="form-horizontal">
@@ -82,7 +81,7 @@
                </div>
 
                <div class=" form-group mt-4 mr-4 ml-4">
-                 <label for="To" class="control-label"><i class="fa fa-map-marker-alt"></i>&nbsp; Your Address</label>
+                 <label for="To" class="control-label text-color"><i class="fa fa-map-marker-alt"></i>&nbsp; Your Address</label>
                  <input type="text" id="to" name="to" placeholder="Destination" class="form-control" required>
                </div>
 
@@ -100,7 +99,7 @@
          </div>
 
          <div class="col-lg-6" id="results">
-           <h2 class="text-center text-info mb-3">Results</h2>
+           <h2 class="text-center text-color mb-3">Results</h2>
            <div class="w-100 shadow card">
              <div class="text-left mr-3 ml-3 mt-3 mb-3" id="output">
 
@@ -125,30 +124,30 @@
     ?>
 
      <div class="container">
-       <div class="row justify-content-center mt-4">
+       <div class="row justify-content-center mt-5">
          <div class="col-lg-6 mb-4">
-           <h2 class="text-center text-info mb-0 title">Ecodemy WalkIT™</h2>
-           <p class="text-center lead subtitle mb-4">Active Transit Carbon Calculator</p>
+           <h2 class="text-center text-color mb-0 title text-uppercase">Eco<span class="secondary-color">demy</span> WalkIT™</h2>
+           <p class="text-center lead subtitle mb-4 text-color text-uppercase">Active Transit Carbon Calculator</p>
            <div class="w-100 shadow trans card">
              <form class="form-horizontal" role="form">
                <div class=" form-group mt-4 mr-4 ml-4">
-                 <label for="From" class="control-label"><i class="fa fa-dot-circle"></i>&nbsp; From</label>
+                 <label for="From" class="control-label text-color"><i class="fa fa-dot-circle"></i>&nbsp; From</label>
                  <input type="text" id="from" placeholder="Origin" class="form-control" required>
                </div>
 
                <div class=" form-group mt-4 mr-4 ml-4">
-                 <label for="To" class="control-label"><i class="fa fa-map-marker-alt"></i>&nbsp; To</label>
+                 <label for="To" class="control-label text-color"><i class="fa fa-map-marker-alt"></i>&nbsp; To</label>
                  <input type="text" id="to" placeholder="Destination" class="form-control" required>
                </div>
              </form>
              <div class="form-group mr-4 ml-4">
-               <button class="btn btn-info w-100 mt-2 mb-3" onclick="calcRoute();"><i class="fa fa-route"></i> Calculate</button>
+               <button class="btn w-100 mt-2 mb-3" onclick="calcRoute();"><i class="fa fa-route"></i> Calculate</button>
              </div>
            </div>
          </div>
 
          <div class="col-lg-6" id="results">
-           <h2 class="text-center text-info mb-3">Results</h2>
+           <h2 class="text-center text-info mb-3 text-color">Results</h2>
            <div class="w-100 shadow card">
              <div class="text-left mr-3 ml-3 mt-3 mb-3" id="output">
 

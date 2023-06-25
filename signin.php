@@ -16,12 +16,14 @@ include 'loginController.php';
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
-<body class="bg-light">
+<body>
 
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-4">
-        <h1 class="text-center text-dark mt-5 mb-4">Sign in to Account</h1>
+      <div class="col-lg-5">
+        <h2 class="text-center text-color mb-0 mt-5 title text-uppercase">Eco<span class="secondary-color">demy</span> WalkIT™</h2>
+        <p class="text-center lead subtitle text-color text-uppercase">Active Transit Carbon Calculator</p>
+        <h1 class="text-center text-color mt-5 mb-3 text-uppercase">Sign in to Account</h1>
         <?php if (count($errors) > 0) : ?>
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <?php foreach ($errors as $error) : ?>
@@ -37,11 +39,12 @@ include 'loginController.php';
 
           <form method="POST" action="signin.php">
             <div class=" form-group mt-4 mr-4 ml-4">
-              <label for="Username">Email address</label>
+              <label for="Username text-color">Email address</label>
               <input type="text" class="form-control" name="email" value="<?= $email ?? '' ?>" required>
             </div>
 
             <div class=" form-group mr-4 ml-4">
+              <label for="Username text-color">Password</label>
               <div class="input-group" id="show_password">
                 <input type="password" class="form-control" name="password" value="<?= $password ?? '' ?>" required aria-label="password" aria-describedby="basic-addon2">
                 <div class="input-group-append">
@@ -51,17 +54,17 @@ include 'loginController.php';
             </div>
 
             <div class="form-group mt-4 mr-4 ml-4">
-              <div class="g-recaptcha" data-sitekey="6LdTmk4cAAAAABdAY63Ks679Amk_TsqvCZkf5N3_"></div>
+              <div class="g-recaptcha w-100" data-sitekey="6LeIPcomAAAAAN9lh6br0tx9LBmM-w0XRvvLHUX6"></div>
             </div>
 
             <div class="form-group mr-4 ml-4">
-              <a href="forgot_password.php" class="float-right">forgot password</a>
-              <input type="submit" class="btn btn-success login w-100 mt-2 mb-3" name="submit" value="Sign in">
+              <a href="forgot_password" class="float-right">forgot password</a>
+              <input type="submit" class="btn login w-100 mt-2 mb-3" name="submit" value="Sign in">
             </div>
           </form>
         </div>
         <div class="trans card w-100 mt-3 shadow">
-          <p class="text-center mt-2">New here? <a href="signup.php">Create an account.</a></p>
+          <p class="text-center mt-2">New here? <a href="signup">Create an account.</a></p>
         </div>
       </div>
     </div>
@@ -73,6 +76,7 @@ include 'loginController.php';
 
   <script src="js/jquery-3.5.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+
   <script>
     $(document).ready(function() {
       $("#show_password a").on('click', function(event) {

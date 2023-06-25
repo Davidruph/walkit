@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     if ($captcha === "") {
         $errors['captcha'] = "Captcha is required";
     } elseif (!empty($captcha)) {
-        $secret_key = '6LdTmk4cAAAAAJn9MtDme2NEAFBSGUJAjR3zuBK-';
+        $secret_key = '6LeIPcomAAAAAA5jxedIeYHMLK7QPtb8fPSr18sD';
         $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $_POST['g-recaptcha-response']);
         $response_data = json_decode($response);
         if (!$response_data->success) {

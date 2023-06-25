@@ -129,7 +129,7 @@ include('include/sidebar.php');
                         <label class="col-md-2 control-label">&nbsp;</label>
                         <div class="col-md-10">
 
-                            <button type="submit" class="btn btn-primary btn-block" name="submit">
+                            <button type="submit" class="btn text-white btn-block" name="submit">
                                 Send Mail
                             </button>
                         </div>

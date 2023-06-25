@@ -15,12 +15,14 @@ include 'signupController.php';
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
-<body class="bg-light">
+<body>
 
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-7">
-        <h1 class="text-center text-dark mt-5 mb-4">Create an Account</h1>
+        <h2 class="text-center text-color mb-0 mt-5 title text-uppercase">Eco<span class="secondary-color">demy</span> WalkIT™</h2>
+        <p class="text-center lead subtitle text-color text-uppercase">Active Transit Carbon Calculator</p>
+        <h1 class="text-center text-color mt-5 mb-4">Create an Account</h1>
         <?php if (count($errors) > 0) : ?>
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <?php foreach ($errors as $error) : ?>
@@ -47,21 +49,21 @@ include 'signupController.php';
 
         <div class="card w-100 trans shadow">
           <form method="POST" id="signup_form" action="signup.php">
-            <div class="form-row mb-3 mt-4 mr-2 ml-2">
+            <div class="row mb-3 mt-4 mr-3 ml-3">
               <div class="col">
-                <label for="full_name">Full Name</label>
+                <label for="full_name" class="text-color">Full Name</label>
                 <input type="text" class="form-control" name="full_name" value="<?= $full_name ?? '' ?>" required="">
               </div>
 
               <div class="col">
-                <label for="Email">Email Address</label>
+                <label for="Email" class="text-color">Email Address</label>
                 <input type="text" class="form-control" name="email" id="email_text" value="<?= $email ?? '' ?>" required>
               </div>
             </div>
 
-            <div class="form-row mb-3 mt-2 mr-2 ml-2">
+            <div class="row mb-3 mt-2 mr-3 ml-3">
               <div class="col">
-                <label for="country">Country</label>
+                <label for="country" class="text-color">Country</label>
                 <select name="country" id="country" class="form-control" required>
                   <option data-mobile_code="93" value="Afghanistan" data-code="AF">Afghanistan</option>
                   <option data-mobile_code="358" value="Aland Islands" data-code="AX">Aland Islands</option>
@@ -309,7 +311,7 @@ include 'signupController.php';
               </div>
 
               <div class="col">
-                <label>Mobile</label>
+                <label class="text-color">Mobile</label>
                 <div class="input-group ">
                   <div class="input-group-prepend">
                     <span class="input-group-text mobile-code form-control">
@@ -323,9 +325,9 @@ include 'signupController.php';
               </div>
             </div>
 
-            <div class="form-row mb-3 mt-2 mr-2 ml-2">
+            <div class="row mb-3 mt-2 mr-3 ml-3">
               <div class="col">
-                <label for="Password">Password</label>
+                <label for="Password" class="text-color">Password</label>
                 <div class="input-group mb-3" id="show_hide_password">
                   <input type="password" class="form-control" name="password" value="<?= $code ?? '' ?>" required aria-label="password" aria-describedby="basic-addon2">
                   <div class="input-group-append">
@@ -336,7 +338,7 @@ include 'signupController.php';
               </div>
 
               <div class="col">
-                <label for="Password">Confirm Password</label>
+                <label for="Password" class="text-color">Confirm Password</label>
                 <div class="input-group mb-3" id="confirm_password">
                   <input type="password" class="form-control" name="confirmpassword" value="<?= $confirm ?? '' ?>" required aria-label="password" aria-describedby="basic-addon2">
                   <div class="input-group-append">
@@ -347,10 +349,10 @@ include 'signupController.php';
               </div>
             </div>
 
-            <div class="form-row mb-3 mt-4 mr-2 ml-2">
+            <div class="row mb-3 mt-4 mr-3 ml-3">
               <div class="col">
 
-                <input type="submit" class="btn btn-success login w-100 mt-2 mb-3" id="signup_button" name="register" value="Sign up">
+                <input type="submit" class="btn login w-100 mt-2 mb-3" id="signup_button" name="register" value="Sign up">
               </div>
             </div>
 
@@ -358,7 +360,7 @@ include 'signupController.php';
         </div>
 
         <div class="card w-100 mt-3 mb-4 trans shadow">
-          <p class="text-center mt-2">Already have an account? <a href="signin.php">Login</a></p>
+          <p class="text-center mt-2">Already have an account? <a href="signin">Login</a></p>
         </div>
       </div>
     </div>

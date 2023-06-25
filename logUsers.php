@@ -9,5 +9,28 @@ $ip = $_POST['ip'];
 $device = $_POST['device'];
 $os = $_POST['os'];
 $browser = $_POST['browser'];
-$submitted_on = date("Y-m-d H:i:s", time());
-$sql = mysqli_query($conn, "INSERT INTO `data_accumulator` (company_user_id, user_home_address, ref, km_saved, ip, device, os, browser, submitted_on) VALUES('$id','$user_address','$ref','$km_saved','$ip','$device','$os','$browser','$submitted_on')");
+
+// Sanitize input values
+$ref = mysqli_real_escape_string($conn, $ref);
+$id = mysqli_real_escape_string($conn, $id);
+$user_address = mysqli_real_escape_string($conn, $user_address);
+$km_saved = mysqli_real_escape_string($conn, $km_saved);
+$ip = mysqli_real_escape_string($conn, $ip);
+$device = mysqli_real_escape_string($conn, $device);
+$os = mysqli_real_escape_string($conn, $os);
+$browser = mysqli_real_escape_string($conn, $browser);
+
+// Prepare the SQL statement with parameter binding
+$sql = 'INSERT INTO `data_accumulator` (company_user_id, user_home_address, ref, km_saved, ip, device, os, browser) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+$statement = $conn->prepare($sql);
+$statement->bind_param('ssssssss', $id, $user_address, $ref, $km_saved, $ip, $device, $os, $browser);
+
+// Execute the prepared statement
+if ($statement->execute()) {
+    // Insertion successful
+} else {
+    // Insertion failed
+}
+
+$statement->close();
+$conn->close();

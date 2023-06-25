@@ -50,32 +50,14 @@ include('include/sidebar.php');
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800 text-dark">
-                    8
-
-                  </div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-utensils fa-2x text-green-300 text-dark"></i>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-
-
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-          <a href="" style="text-decoration: none;">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">App Users</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800 text-dark">
-                    6
+                    <?php
+                    $count = $connection->prepare("SELECT * FROM data_accumulator");
+                    $count->execute();
+                    $users = $count->rowCount();
+                    echo $users;
+                    ?>
 
                   </div>
                 </div>
@@ -96,7 +78,12 @@ include('include/sidebar.php');
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Sent Mails</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800 text-dark">
-                    0
+                    <?php
+                    $count = $connection->prepare("SELECT * FROM tblmail");
+                    $count->execute();
+                    $mails = $count->rowCount();
+                    echo $mails;
+                    ?>
 
                   </div>
                 </div>

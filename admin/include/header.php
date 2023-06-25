@@ -1,8 +1,14 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
+//   $conn = mysqli_connect("localhost", "ujcjwhfeokxbh", "#i@|d4}sj3(1", "dbjqx4xsyvob6y");
+$conn = mysqli_connect("localhost", "root", "", "walkit_app");
 
 if (!isset($_SESSION['email'])) {
     header("Location: ../signin");
+    exit();
 } else {
 
     $id = $_SESSION['user'];
@@ -38,6 +44,7 @@ if (!isset($_SESSION['email'])) {
     <title>Ecodemy WalkIT™ Admin</title>
 
     <link href="assets/css/styles.css" rel="stylesheet" />
+    <link href="assets/css/custom-css.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="assets/js/all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">

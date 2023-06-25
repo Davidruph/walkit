@@ -29,7 +29,7 @@ include('include/sidebar.php');
             <div class="demo-box m-t-20">
 
                 <div class="table-responsive">
-                    <table class="table m-0 table-colored-bordered table-bordered-primary" id="dataTable">
+                    <table class="table m-0 table-colored-bordered table-bordered-dark" id="dataTable">
                         <thead>
                             <tr>
                                 <th>s/n</th>

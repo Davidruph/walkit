@@ -3,30 +3,11 @@
   font-family: "Cooper Hewitt";
   src: url("cooper-hewitt.heavy.otf") format("opentype");
 }
-body {
-  font-family: Raleway !important;
-  color: #003b49 !important;
-  background-color: #bfcec2 !important;
-}
 .title {
   font-family: "Cooper Hewitt", Arial, sans-serif !important;
-  color: #003b49;
 }
-.subtitle {
+body {
   font-family: Raleway !important;
-  font-style: normal !important;
-}
-#googleMap {
-  width: 80%;
-  height: 400px;
-  margin: 20px auto;
-}
-#maps,
-#results {
-  display: none;
-}
-.submit {
-  visibility: hidden;
 }
 .text-color {
   color: #003b49;
@@ -38,6 +19,17 @@ body {
   color: #bfcec2;
 }
 .btn {
-  background-color: #789d4a;
+  background-color: #003b49;
   color: white;
+}
+.bg-sidebar {
+  background-color: white;
+  color: #003b49;
+}
+.bg-menu {
+  background-color: #003b49;
+  color: white;
+}
+.bg-top {
+  background-color: #bfcec2;
 }

@@ -1,9 +1,14 @@
 <?php
 
+// $server = "localhost";  //server host
+// $username = "ujcjwhfeokxbh";  //Username of server
+// $password = "#i@|d4}sj3(1";  //Server password
+// $dbname = "dbjqx4xsyvob6y";  //Name of the database
+
 $server = "localhost";  //server host
-$username = "ujcjwhfeokxbh";  //Username of server
-$password = "#i@|d4}sj3(1";  //Server password
-$dbname = "dbjqx4xsyvob6y";  //Name of the database
+$username = "root";  //Username of server
+$password = "";  //Server password
+$dbname = "walkit_app";  //Name of the database
 
 try {
   $connection = new PDO("mysql:host=$server;dbname=$dbname", $username, $password);

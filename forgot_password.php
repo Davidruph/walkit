@@ -90,11 +90,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
-<body class="bg-light">
+<body>
 
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-4">
+      <div class="col-lg-5">
+        <h2 class="text-center text-color mb-0 mt-5 title text-uppercase">Eco<span class="secondary-color">demy</span> WalkIT™</h2>
+        <p class="text-center lead subtitle text-color text-uppercase">Active Transit Carbon Calculator</p>
         <h1 class="text-center text-dark mt-5 mb-4">Forgot Password</h1>
         <?php if (count($errors) > 0) : ?>
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -123,12 +125,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           <form method="POST" action="forgot_password.php">
             <div class=" form-group mt-4 mr-4 ml-4">
-              <label for="Username">Enter Email address</label>
+              <label for="Username" class="text-color">Enter Email address</label>
               <input type="text" class="form-control" name="email" value="" required placeholder="jane@domain.com">
             </div>
 
             <div class="form-group mr-4 ml-4">
-              <input type="submit" class="btn btn-success login w-100 mt-2 mb-3" name="submit" value="Get Link">
+              <input type="submit" class="btn login w-100 mt-2 mb-3" name="submit" value="Get Link">
             </div>
           </form>
         </div>

@@ -410,7 +410,7 @@ include('include/sidebar.php');
 
           <div class="row mt-3">
             <div class="col">
-              <button type="submit" class="btn btn-primary btn-block" name="submit">
+              <button type="submit" class="btn btn-block text-white" name="submit">
                 Update
               </button>
             </div>
@@ -418,7 +418,7 @@ include('include/sidebar.php');
 
           <hr class="mt-5 mb-4 border-dark">
           <p>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn text-white" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
               Change Password
             </a>
           </p>
@@ -436,7 +436,7 @@ include('include/sidebar.php');
                 </div>
               </div>
 
-              <button type="submit" name="password_change" class="btn btn-primary">Change Pawword</button>
+              <button type="submit" name="password_change" class="btn text-white">Change Password</button>
             </div>
           </div>
 
