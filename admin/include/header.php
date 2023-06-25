@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 //   $conn = mysqli_connect("localhost", "ujcjwhfeokxbh", "#i@|d4}sj3(1", "dbjqx4xsyvob6y");
 $conn = mysqli_connect("localhost", "root", "", "walkit_app");
@@ -16,6 +13,7 @@ if (!isset($_SESSION['email'])) {
     $mobile = $_SESSION['mobile'];
     $country = $_SESSION['country'];
     $role = $_SESSION['role'];
+    $user_email = $_SESSION['email'];
 
     //select the sum of all km saved by user
     $sql = mysqli_query($conn, "SELECT sum(km_saved) FROM data_accumulator WHERE company_user_id = $id");

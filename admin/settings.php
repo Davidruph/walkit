@@ -421,28 +421,32 @@ $fileURL = $baseURL . 'walkit/index.php';
               </button>
             </div>
           </div>
+        </form>
 
-          <hr class="mt-5 mb-4 border-dark">
-          <p>
-            <a class="btn text-white" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Change Password
-            </a>
-          </p>
+        <hr class="mt-5 mb-4 border-dark">
+        <p>
+          <a class="btn text-white" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Change Password
+          </a>
+        </p>
+
+        <form class="form-horizontal" method="post" autocomplete="off" action="settings.php">
+
           <div class="collapse mb-5" id="collapseExample">
             <div class="card card-body">
               <div class="row mb-3">
                 <div class="col">
                   <label for="exampleFormControlFile1">Old Password</label>
-                  <input type="password" class="form-control" name="old_password">
+                  <input type="password" class="form-control" name="old_password" required>
                 </div>
 
                 <div class="col">
                   <label for="exampleFormControlFile1">New Password</label>
-                  <input type="password" class="form-control" name="new_password">
+                  <input type="password" class="form-control" name="new_password" required>
                 </div>
               </div>
 
-              <button type="submit" name="password_change" class="btn text-white">Change Password</button>
+              <button type="submit" name="btn_password" class="btn text-white">Change Password</button>
             </div>
           </div>
 

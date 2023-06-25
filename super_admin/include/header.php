@@ -10,6 +10,7 @@ if (!isset($_SESSION['email'])) {
     $mobile = $_SESSION['mobile'];
     $country = $_SESSION['country'];
     $role = $_SESSION['role'];
+    $user_email = $_SESSION['email'];
 }
 
 ?>

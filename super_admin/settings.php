@@ -63,12 +63,12 @@ include('include/sidebar.php');
           <div class="row mb-3">
             <div class="col">
               <label for="full_name">Full Name</label>
-              <input type="text" class="form-control" value="<?= $name ?>" name="name" required>
+              <input type="text" class="form-control" value="<?= $name ?? $fullname; ?>" name="name" required>
             </div>
 
             <div class="col">
               <label for="full_name">Email</label>
-              <input type="email" class="form-control" value="<?= $email ?>" name="email" required>
+              <input type="email" class="form-control" value="<?= $email ?? $user_email ?>" name="email" required>
             </div>
           </div>
 
@@ -90,13 +90,15 @@ include('include/sidebar.php');
               </button>
             </div>
           </div>
+        </form>
+        <hr class="mt-5 mb-4 border-dark">
+        <p>
+          <a class="btn text-white" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Change Password
+          </a>
+        </p>
+        <form class="form-horizontal" method="post" autocomplete="off" action="settings.php">
 
-          <hr class="mt-5 mb-4 border-dark">
-          <p>
-            <a class="btn text-white" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Change Password
-            </a>
-          </p>
           <div class="collapse mb-5" id="collapseExample">
             <div class="card card-body">
               <div class="row mb-3">
@@ -111,7 +113,7 @@ include('include/sidebar.php');
                 </div>
               </div>
 
-              <button type="submit" name="password_change" class="btn text-white">Change Password</button>
+              <button type="submit" name="btn_password" class="btn text-white">Change Password</button>
             </div>
           </div>
 
