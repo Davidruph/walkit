@@ -28,6 +28,13 @@ function calcRoute() {
   var toVal = document.getElementById("to").value;
   var transport_mode = document.getElementById("transport_mode").value;
   var calculateButton = document.querySelector(".calc-btn");
+  var co2eTable = {
+    moped_motorcycle: 75,
+    small_car: 96,
+    big_car: 192,
+    suv: 350,
+    pickup_truck: 375,
+  };
 
   if (fromVal.length === 0) {
     Swal.fire("Ooops Sorry!", "Pls enter an Origin to continue!", "error");
@@ -47,7 +54,7 @@ function calcRoute() {
     var request = {
       origin: fromVal,
       destination: toVal,
-      travelMode: google.maps.TravelMode[transport_mode],
+      travelMode: google.maps.TravelMode.WALKING,
       unitSystem:
         unit === "metric"
           ? google.maps.UnitSystem.METRIC
@@ -60,8 +67,19 @@ function calcRoute() {
         calculateButton.disabled = false;
         calculateButton.innerHTML = '<i class="fa fa-route"></i> Calculate';
         // Get the transport mode value
-        var transportModeValue =
-          document.getElementById("transport_mode").value;
+        var co2ePerKm = co2eTable[transport_mode];
+        var distanceKm = result.routes[0].legs[0].distance.value / 1000;
+
+        // Calculate the CO2e saved
+        var co2eSaved = distanceKm * co2ePerKm;
+        // Determine the unit for CO2e display
+        var co2eUnit = "grams";
+        if (co2eSaved > 1000) {
+          co2eSaved /= 1000;
+          co2eUnit = "kilograms";
+        }
+
+        var transportModeValue = "WALKING";
 
         // Create a variable to hold the transport mode text
         var transportModeText = "";
@@ -100,12 +118,21 @@ function calcRoute() {
           result.routes[0].legs[0].duration.text +
           ".";
 
+        const grams_saved = document.querySelector("#grams_saved");
+        grams_saved.innerHTML =
+          "<b>You also saved " +
+          co2eSaved.toFixed(2) +
+          " " +
+          co2eUnit +
+          " of CO2e with this trip.</b>";
+
         //display route
         displayDirection.setDirections(result);
         document.getElementById("results").style.display = "block";
         document.getElementById("maps").style.display = "block";
         $(function () {
           $("#saved_km").val(result.routes[0].legs[0].distance.text + "s");
+          $("#saved_carbon").val(co2eSaved.toFixed(2) + " " + co2eUnit);
           $("#log").trigger("click");
         });
       } else {
@@ -120,8 +147,7 @@ function calcRoute() {
         //center map in spain
         map.setCenter(latitudelongtitude);
 
-        var transportModeValue =
-          document.getElementById("transport_mode").value;
+        var transportModeValue = "WALKING";
 
         // Create a variable to hold the transport mode text
         var transportModeText = "";

@@ -35,6 +35,7 @@ include('include/sidebar.php');
                                 <th>s/n</th>
                                 <th>Home Address</th>
                                 <th>Km saved</th>
+                                <th>Carbon saved</th>
                                 <th>IP</th>
                                 <th>Device</th>
                                 <th>OS</th>
@@ -55,6 +56,7 @@ include('include/sidebar.php');
                                         <td><?php echo ++$counter; ?></td>
                                         <td><?php echo $row['user_home_address']; ?></td>
                                         <td><?php echo $row['km_saved']; ?></td>
+                                        <td><?php echo $row['saved_carbon']; ?></td>
                                         <td><?php echo $row['ip']; ?></td>
                                         <td><?php echo $row['device']; ?></td>
                                         <td><?php echo $row['os']; ?></td>

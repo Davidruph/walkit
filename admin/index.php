@@ -28,7 +28,7 @@ include('include/sidebar.php');
                 <div class="h5 mb-0 font-weight-bold text-gray-800 text-dark">
 
                   <?php
-                  $count = $connection->prepare("SELECT * FROM data_accumulator WHERE id = $id");
+                  $count = $connection->prepare("SELECT * FROM data_accumulator WHERE company_user_id = $id");
                   $count->execute();
                   $users = $count->rowCount();
                   echo $users;

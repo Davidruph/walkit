@@ -78,6 +78,7 @@
                  <input type="hidden" id="id" class="form-control" name="user_id" value="<?= $id ?? '' ?>">
                  <input type="hidden" id="from" placeholder="Origin" class="form-control" value="<?= $address ?? '' ?>">
                  <input type="hidden" id="saved_km" name="saved_km">
+                 <input type="hidden" id="saved_carbon" name="saved_carbon">
                </div>
 
                <div class=" form-group mt-4 mr-4 ml-4">
@@ -86,17 +87,14 @@
                </div>
 
                <div class="form-group mt-4 mr-4 ml-4">
-                 <label for="transport_mode" class="control-label text-color"><i class="fa fa-car"></i>&nbsp; Preferred mode of transport</label>
+                 <label for="transport_mode" class="control-label text-color"><i class="fa fa-car"></i>&nbsp; I would normally take</label>
                  <select id="transport_mode" class="form-control">
                    <option value="">-- select --</option>
-                   <optgroup label="Preferred Modes">
-                     <option value="DRIVING">Driving</option>
-                     <option value="WALKING">Walking</option>
-                     <option value="BICYCLING">Bicycling</option>
-                   </optgroup>
-                   <optgroup label="Alternative Modes">
-                     <option value="TRANSIT">Public Transit</option>
-                   </optgroup>
+                   <option value="moped_motorcycle">Moped or Motorcycle</option>
+                   <option value="small_car">Small Car</option>
+                   <option value="big_car">Big Car</option>
+                   <option value="suv">SUV</option>
+                   <option value="pickup_truck">Pickup Truck</option>
                  </select>
 
                </div>
@@ -108,7 +106,7 @@
              </form>
 
              <div class="form-group mr-4 ml-4">
-               <button class="btn btn-info calculate w-100 mt-2 mb-3 calc calc-btn" name="submit" onclick="calcRoute();"><i class="fa fa-route"></i> Calculate</button>
+               <button class="btn calculate w-100 mt-2 mb-3 calc calc-btn" name="submit" onclick="calcRoute();"><i class="fa fa-route"></i> Calculate</button>
              </div>
 
            </div>
@@ -116,8 +114,13 @@
 
          <div class="col-lg-6" id="results">
            <h2 class="text-center text-color mb-3">Results</h2>
-           <div class="w-100 shadow card">
+           <div class="w-100 shadow card mb-3">
              <div class="text-left mr-3 ml-3 mt-3 mb-3" id="output">
+
+             </div>
+           </div>
+           <div class="w-100 shadow card">
+             <div class="text-left mr-3 ml-3 mt-3 mb-3" id="grams_saved">
 
              </div>
            </div>
@@ -157,20 +160,15 @@
                </div>
 
                <div class="form-group mt-4 mr-4 ml-4">
-                 <label for="transport_mode" class="control-label text-color"><i class="fa fa-car"></i>&nbsp; Preferred mode of transport</label>
+                 <label for="transport_mode" class="control-label text-color"><i class="fa fa-car"></i>&nbsp; I would normally take</label>
                  <select id="transport_mode" class="form-control">
                    <option value="">-- select --</option>
-                   <optgroup label="Preferred Modes">
-                     <option value="DRIVING">Driving</option>
-                     <option value="WALKING">Walking</option>
-                     <option value="BICYCLING">Bicycling</option>
-                   </optgroup>
-                   <optgroup label="Alternative Modes">
-                     <option value="TRANSIT">Public Transit</option>
-                   </optgroup>
+                   <option value="moped_motorcycle">Moped or Motorcycle</option>
+                   <option value="small_car">Small Car</option>
+                   <option value="big_car">Big Car</option>
+                   <option value="suv">SUV</option>
+                   <option value="pickup_truck">Pickup Truck</option>
                  </select>
-
-
                </div>
 
              </form>
@@ -181,9 +179,15 @@
          </div>
 
          <div class="col-lg-6" id="results">
-           <h2 class="text-center text-info mb-3 text-color">Results</h2>
-           <div class="w-100 shadow card">
+           <h2 class="text-center mb-3 text-color">Results</h2>
+           <div class="w-100 shadow card mb-3">
              <div class="text-left mr-3 ml-3 mt-3 mb-3" id="output">
+
+             </div>
+           </div>
+
+           <div class="w-100 shadow card">
+             <div class="text-left mr-3 ml-3 mt-3 mb-3" id="grams_saved">
 
              </div>
            </div>
