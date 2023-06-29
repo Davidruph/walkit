@@ -85,6 +85,22 @@
                  <input type="text" id="to" name="to" placeholder="Destination" class="form-control" required>
                </div>
 
+               <div class="form-group mt-4 mr-4 ml-4">
+                 <label for="transport_mode" class="control-label text-color"><i class="fa fa-car"></i>&nbsp; Preferred mode of transport</label>
+                 <select id="transport_mode" class="form-control">
+                   <option value="">-- select --</option>
+                   <optgroup label="Preferred Modes">
+                     <option value="DRIVING">Driving</option>
+                     <option value="WALKING">Walking</option>
+                     <option value="BICYCLING">Bicycling</option>
+                   </optgroup>
+                   <optgroup label="Alternative Modes">
+                     <option value="TRANSIT">Public Transit</option>
+                   </optgroup>
+                 </select>
+
+               </div>
+
                <div class=" form-group mr-4 ml-4">
                  <input type="submit" style="visibility: hidden;" name="submit" id="log" value="log users" class="btn btn-info btn-sm submit">
                </div>
@@ -92,7 +108,7 @@
              </form>
 
              <div class="form-group mr-4 ml-4">
-               <button class="btn btn-info calculate w-100 mt-2 mb-3 calc" name="submit" onclick="calcRoute();"><i class="fa fa-route"></i> Calculate</button>
+               <button class="btn btn-info calculate w-100 mt-2 mb-3 calc calc-btn" name="submit" onclick="calcRoute();"><i class="fa fa-route"></i> Calculate</button>
              </div>
 
            </div>
@@ -141,20 +157,25 @@
                </div>
 
                <div class="form-group mt-4 mr-4 ml-4">
-                 <label for="To" class="control-label text-color"><i class="fa fa-bicycle"></i>&nbsp; I would normally take</label>
+                 <label for="transport_mode" class="control-label text-color"><i class="fa fa-car"></i>&nbsp; Preferred mode of transport</label>
                  <select id="transport_mode" class="form-control">
                    <option value="">-- select --</option>
-                   <option value="DRIVING">Driving</option>
-                   <option value="WALKING">Walking</option>
-                   <option value="BICYCLING">Bicycling</option>
-                   <option value="TRANSIT">Public Transit</option>
+                   <optgroup label="Preferred Modes">
+                     <option value="DRIVING">Driving</option>
+                     <option value="WALKING">Walking</option>
+                     <option value="BICYCLING">Bicycling</option>
+                   </optgroup>
+                   <optgroup label="Alternative Modes">
+                     <option value="TRANSIT">Public Transit</option>
+                   </optgroup>
                  </select>
+
 
                </div>
 
              </form>
              <div class="form-group mr-4 ml-4">
-               <button class="btn w-100 mt-2 mb-3" onclick="calcRoute();"><i class="fa fa-route"></i> Calculate</button>
+               <button class="btn w-100 mt-2 mb-3 calc-btn" onclick="calcRoute();"><i class="fa fa-route"></i> Calculate</button>
              </div>
            </div>
          </div>
@@ -190,7 +211,8 @@
    <script src="js/jquery-3.5.1.min.js"></script>
    <script src="js/bootstrap.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtJ99NRw1wBanqdNqp7HyKGtGq_LrT2Fw&libraries=places"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtJ99NRw1wBanqdNqp7HyKGtGq_LrT2Fw&libraries=places,directions"></script>
+
    <script src="js/app.js"></script>
 
    <script>

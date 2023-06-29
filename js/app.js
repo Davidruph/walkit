@@ -27,6 +27,7 @@ function calcRoute() {
   var fromVal = document.getElementById("from").value;
   var toVal = document.getElementById("to").value;
   var transport_mode = document.getElementById("transport_mode").value;
+  var calculateButton = document.querySelector(".calc-btn");
 
   if (fromVal.length === 0) {
     Swal.fire("Ooops Sorry!", "Pls enter an Origin to continue!", "error");
@@ -39,6 +40,9 @@ function calcRoute() {
       "error"
     );
   } else {
+    calculateButton.disabled = true;
+    calculateButton.innerHTML = "Calculating...";
+
     var unit = "metric";
     var request = {
       origin: fromVal,
@@ -53,14 +57,46 @@ function calcRoute() {
     //pass the request to the route method
     serviceDirection.route(request, (result, status) => {
       if (status == google.maps.DirectionsStatus.OK) {
+        calculateButton.disabled = false;
+        calculateButton.innerHTML = '<i class="fa fa-route"></i> Calculate';
+        // Get the transport mode value
+        var transportModeValue =
+          document.getElementById("transport_mode").value;
+
+        // Create a variable to hold the transport mode text
+        var transportModeText = "";
+
+        // Assign the appropriate transport mode text based on the transport mode value
+        switch (transportModeValue) {
+          case "DRIVING":
+            transportModeText = "Driving";
+            break;
+          case "WALKING":
+            transportModeText = "Walking";
+            break;
+          case "BICYCLING":
+            transportModeText = "Bicycling";
+            break;
+          case "TRANSIT":
+            transportModeText = "Transit";
+            break;
+          default:
+            transportModeText = "Unknown";
+            break;
+        }
         //get distance and time
+
         const output_result = document.querySelector("#output");
         output_result.innerHTML =
           "<b>Great job, you saved " +
           result.routes[0].legs[0].distance.text +
-          "s of driving to " +
+          "s of " +
+          transportModeText +
+          " to " +
           document.getElementById("from").value +
-          "</b>.<br /><b>The walking duration is </b><i class='fa fa-stopwatch'></i> : " +
+          "</b>.<br /><b>The " +
+          transportModeText +
+          " duration is </b><i class='fa fa-stopwatch'></i> : " +
           result.routes[0].legs[0].duration.text +
           ".";
 
@@ -74,14 +110,49 @@ function calcRoute() {
         });
       } else {
         //delete route from map
+        calculateButton.disabled = false;
+        calculateButton.innerHTML = '<i class="fa fa-route"></i> Calculate';
+        const output_result = document.querySelector("#output");
+        document.getElementById("results").style.display = "block";
+
         displayDirection.setDirections({ routes: [] });
 
         //center map in spain
         map.setCenter(latitudelongtitude);
 
+        var transportModeValue =
+          document.getElementById("transport_mode").value;
+
+        // Create a variable to hold the transport mode text
+        var transportModeText = "";
+
+        // Assign the appropriate transport mode text based on the transport mode value
+        switch (transportModeValue) {
+          case "DRIVING":
+            transportModeText = "Driving";
+            break;
+          case "WALKING":
+            transportModeText = "Walking";
+            break;
+          case "BICYCLING":
+            transportModeText = "Bicycling";
+            break;
+          case "TRANSIT":
+            transportModeText = "Transit";
+            break;
+          default:
+            transportModeText = "Unknown";
+            break;
+        }
         //show eeror message
         output_result.innerHTML =
-          "<div class='alert-danger'><i class='fa fa-exclamation-triangle'></i> Could not retrieve walking distance.</div>";
+          "<div class='alert-danger'><i class='fa fa-exclamation-triangle'></i> Failed to retrieve " +
+          transportModeText +
+          " distance or " +
+          transportModeText +
+          " is not available for this route. Please try a different mode of transportation or check your origin and destination. Error: " +
+          status +
+          "</div>";
       }
     });
   }
