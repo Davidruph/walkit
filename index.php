@@ -139,6 +139,19 @@
                  <label for="To" class="control-label text-color"><i class="fa fa-map-marker-alt"></i>&nbsp; To</label>
                  <input type="text" id="to" placeholder="Destination" class="form-control" required>
                </div>
+
+               <div class="form-group mt-4 mr-4 ml-4">
+                 <label for="To" class="control-label text-color"><i class="fa fa-bicycle"></i>&nbsp; I would normally take</label>
+                 <select id="transport_mode" class="form-control">
+                   <option value="">-- select --</option>
+                   <option value="DRIVING">Driving</option>
+                   <option value="WALKING">Walking</option>
+                   <option value="BICYCLING">Bicycling</option>
+                   <option value="TRANSIT">Public Transit</option>
+                 </select>
+
+               </div>
+
              </form>
              <div class="form-group mr-4 ml-4">
                <button class="btn w-100 mt-2 mb-3" onclick="calcRoute();"><i class="fa fa-route"></i> Calculate</button>
@@ -215,6 +228,8 @@
        $('.calc').mouseup(function() {
          var fromVal = document.getElementById("from").value;
          var toVal = document.getElementById("to").value;
+         var transport_mode = document.getElementById("transport_mode").value;
+
          if (fromVal.length === 0) {
            Swal.fire(
              'Ooops Sorry!',
@@ -225,6 +240,12 @@
            Swal.fire(
              'Ooops Sorry!',
              'Pls enter a Destination to continue!',
+             'error'
+           );
+         } else if (transport_mode.length === 0) {
+           Swal.fire(
+             'Ooops Sorry!',
+             'Pls select a transport mode to continue!',
              'error'
            );
          } else {

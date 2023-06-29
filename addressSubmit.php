@@ -1,70 +1,57 @@
-<?php 
+<?php
 
 /**
  * @function getDistance()
- * Calculates the distance between two address
+ * Calculates the distance between two addresses
  * 
  * @params
  * $addressFrom - Starting point
  * $addressTo - End point
+ * $mode - Transport mode
  * $unit - Unit type
  * 
- * @author David
+ * @return string - The calculated distance
  * 
+ * @author David
  *
  */
-function getDistance($addressFrom, $addressTo, $unit = ''){
+function getDistance($addressFrom, $addressTo, $mode, $unit = 'K')
+{
     // Google API key
     $apiKey = 'AIzaSyBtJ99NRw1wBanqdNqp7HyKGtGq_LrT2Fw';
-    
+
     // Change address format
-    $formattedAddrFrom    = str_replace(' ', '+', $addressFrom);
-    $formattedAddrTo     = str_replace(' ', '+', $addressTo);
-    
-    // Geocoding API request with start address
-    $geocodeFrom = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false&key='.$apiKey);
-    $outputFrom = json_decode($geocodeFrom);
-    if(!empty($outputFrom->error_message)){
-        return $outputFrom->error_message;
-    }
-    
-    // Geocoding API request with end address
-    $geocodeTo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false&key='.$apiKey);
-    $outputTo = json_decode($geocodeTo);
-    if(!empty($outputTo->error_message)){
-        return $outputTo->error_message;
-    }
-    
-    // Get latitude and longitude from the geodata
-    $latitudeFrom    = $outputFrom->results[0]->geometry->location->lat;
-    $longitudeFrom    = $outputFrom->results[0]->geometry->location->lng;
-    $latitudeTo        = $outputTo->results[0]->geometry->location->lat;
-    $longitudeTo    = $outputTo->results[0]->geometry->location->lng;
-    
-    // Calculate distance between latitude and longitude
-    $theta    = $longitudeFrom - $longitudeTo;
-    $dist    = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
-    $dist    = acos($dist);
-    $dist    = rad2deg($dist);
-    $miles    = $dist * 60 * 1.1515;
-    
-    // Convert unit and return distance
-    $unit = strtoupper($unit);
-    if($unit == "K"){
-        return round($miles * 1.609344, 2).' km';
-    }elseif($unit == "M"){
-        return round($miles * 1609.344, 2).' meters';
-    }else{
-        return round($miles, 2).' miles';
+    $formattedAddrFrom = str_replace(' ', '+', $addressFrom);
+    $formattedAddrTo = str_replace(' ', '+', $addressTo);
+    $mode =  str_replace(' ', '+', $mode);
+
+    // Directions API request
+    $directionsUrl = 'https://maps.googleapis.com/maps/api/directions/json?origin=' . $formattedAddrFrom . '&destination=' . $formattedAddrTo . '&mode=' . $mode . '&key=' . $apiKey;
+    $directionsData = file_get_contents($directionsUrl);
+    $directionsResult = json_decode($directionsData);
+
+    // Check if the API returned valid results
+    if ($directionsResult->status == 'OK') {
+        $distanceValue = $directionsResult->routes[0]->legs[0]->distance->value;
+        $distanceText = $directionsResult->routes[0]->legs[0]->distance->text;
+        if ($unit == 'K') {
+            return round($distanceValue / 1000, 2) . ' km';
+        } elseif ($unit == 'M') {
+            return round($distanceValue * 0.621371 / 1000, 2) . ' miles';
+        } else {
+            return $distanceText;
+        }
+    } else {
+        return 'Error: ' . $directionsResult->status;
     }
 }
 
-//get the two address
+// Get the two addresses
 $addressFrom = 'Newbury Street, Boston, MA, USA';
-$addressTo   = 'New Jersey Turnpike, Kearny, NJ, USA';
+$addressTo = 'New Jersey Turnpike, Kearny, NJ, USA';
+$mode = 'DRIVING'; // Replace with the selected mode from your form
 
-// Get distance in km
-$distance = getDistance($addressFrom, $addressTo, "K");
+// Get distance
+$distance = getDistance($addressFrom, $addressTo, $mode, 'K');
 
 echo $distance;
-?>
