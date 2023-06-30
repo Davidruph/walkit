@@ -120,11 +120,11 @@ function calcRoute() {
 
         const grams_saved = document.querySelector("#grams_saved");
         grams_saved.innerHTML =
-          "<b>You also saved " +
+          "<div><p>You also saved <br /> <h4 class='title'>" +
           co2eSaved.toFixed(2) +
           " " +
           co2eUnit +
-          " of CO2e with this trip.</b>";
+          " of CO2e </h4> with this trip.</p></div>";
 
         //display route
         displayDirection.setDirections(result);

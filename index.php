@@ -83,7 +83,7 @@
 
                <div class=" form-group mt-4 mr-4 ml-4">
                  <label for="To" class="control-label text-color"><i class="fa fa-map-marker-alt"></i>&nbsp; Your Address</label>
-                 <input type="text" id="to" name="to" placeholder="Destination" class="form-control" required>
+                 <input type="text" id="to" name="to" placeholder="Starting Point" class="form-control" required>
                </div>
 
                <div class="form-group mt-4 mr-4 ml-4">
