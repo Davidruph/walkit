@@ -12,6 +12,11 @@ body {
   font-family: "Cooper Hewitt", Arial, sans-serif !important;
   color: #003b49;
 }
+.grams {
+  font-family: "Cooper Hewitt", Arial, sans-serif !important;
+  color: #003b49;
+  font-size: 100px;
+}
 .subtitle {
   font-family: Raleway !important;
   font-style: normal !important;

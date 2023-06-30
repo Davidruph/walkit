@@ -73,10 +73,10 @@ function calcRoute() {
         // Calculate the CO2e saved
         var co2eSaved = distanceKm * co2ePerKm;
         // Determine the unit for CO2e display
-        var co2eUnit = "grams";
+        var co2eUnit = "g";
         if (co2eSaved > 1000) {
           co2eSaved /= 1000;
-          co2eUnit = "kilograms";
+          co2eUnit = "kg";
         }
 
         var transportModeValue = "WALKING";
@@ -120,7 +120,7 @@ function calcRoute() {
 
         const grams_saved = document.querySelector("#grams_saved");
         grams_saved.innerHTML =
-          "<div><p>You also saved <br /> <h4 class='title'>" +
+          "<div><p>You also saved <br /> <h4 class='grams'>" +
           co2eSaved.toFixed(2) +
           " " +
           co2eUnit +
