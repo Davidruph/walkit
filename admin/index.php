@@ -45,6 +45,13 @@ include('include/sidebar.php');
       </div>
 
     </div>
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="card">
+          <div id="chart_div" style="width: 100%; height: 400px;"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </main>
 
