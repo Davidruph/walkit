@@ -51,7 +51,10 @@
               <a class="nav-link" href="view-logs">View logs</a>
             </nav>
           </div>
-
+          <a class="nav-link" href="get-widget">
+            <div class="sb-nav-link-icon"><i class="fas fa-book fa-fw"></i></div>
+            Get Widget
+          </a>
           <a class="nav-link" href="settings">
             <div class="sb-nav-link-icon"><i class="fas fa-cog fa-fw"></i></div>
             Settings
