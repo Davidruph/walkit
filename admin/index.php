@@ -48,8 +48,30 @@ include('include/sidebar.php');
     <div class="row mb-4">
       <div class="col-md-12">
         <div class="card">
-          <div id="chart_div" style="width: 100%; height: 400px;"></div>
+          <div class="card-header text-center">
+            <h3>FILTER DATA</h3>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="kmCheckbox" checked>
+              <label class="form-check-label" for="kmCheckbox">KM Saved</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="carbonCheckbox" checked>
+              <label class="form-check-label" for="carbonCheckbox">Carbon Saved</label>
+            </div>
+            <div class="form-inline justify-content-center pt-3">
+              <label class="mr-2" for="startDate">Start Date:</label>
+              <input class="form-control mr-4" type="date" id="startDate" value="2023-01-01">
+              <label class="mr-2" for="endDate">End Date:</label>
+              <input class="form-control" type="date" id="endDate" value="2023-12-31">
+            </div>
+          </div>
+          <div class="card-body p-2">
+            <div class="chart-container">
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -64,117 +86,3 @@ include('include/footer.php');
 //javascripts files to be included
 include('include/scripts.php');
 ?>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-  google.charts.load("current", {
-    packages: ["corechart"]
-  });
-  google.charts.setOnLoadCallback(drawCharts);
-
-  function drawCharts() {
-    // Fetch data from the backend
-    fetch('../admin/chart.php')
-      .then(response => response.json())
-      .then(data => {
-        var chartData = [
-          ['Date', 'KM Saved', 'Carbon Saved']
-        ];
-        var companyName = data.length > 0 ? data[0].company_name : '';
-
-        var groupedData = {};
-        var totalKmSaved = 0;
-        var totalCarbonSaved = 0;
-
-        data.forEach(row => {
-          var date = row.submitted_on;
-          if (!groupedData[date]) {
-            groupedData[date] = {
-              kmSaved: 0,
-              carbonSaved: 0
-            };
-          }
-          var kmSaved = parseFloat(row.km_saved);
-          var carbonSaved = parseFloat(row.saved_carbon);
-          groupedData[date].kmSaved += kmSaved;
-          groupedData[date].carbonSaved += carbonSaved;
-          totalKmSaved += kmSaved;
-          totalCarbonSaved += carbonSaved;
-        });
-
-        Object.keys(groupedData).forEach(date => {
-          var kmSaved = groupedData[date].kmSaved;
-          var carbonSaved = groupedData[date].carbonSaved;
-          chartData.push([
-            date,
-            {
-              v: kmSaved,
-              f: kmSaved.toFixed(2) + ' km'
-            },
-            {
-              v: carbonSaved,
-              f: carbonSaved.toFixed(2) + ' kg'
-            }
-          ]);
-        });
-
-        // Add separate totals as annotations
-        chartData.push([
-          'Total',
-          {
-            v: totalKmSaved,
-            f: totalKmSaved.toFixed(2) + ' kms'
-          },
-          {
-            v: totalCarbonSaved,
-            f: totalCarbonSaved.toFixed(2) + ' kg'
-          }
-        ]);
-
-        var dataTable = google.visualization.arrayToDataTable(chartData);
-
-        // Draw the charts
-        var options = {
-          title: companyName + ' ACTIVE TRANSIT CARBON CALCULATOR DATA',
-          curveType: 'function',
-          legend: {
-            position: 'bottom'
-          },
-          series: {
-            0: { // KM Saved series
-              annotations: {
-                textStyle: {
-                  fontSize: 12
-                },
-                stem: {
-                  length: 8
-                }
-              },
-              pointSize: 8, // Adjust the point size
-              pointShape: 'circle' // Set the point shape to circle
-            },
-            1: { // Carbon Saved series
-              annotations: {
-                textStyle: {
-                  fontSize: 12
-                },
-                stem: {
-                  length: 8
-                }
-              },
-              pointSize: 8, // Adjust the point size
-              pointShape: 'circle' // Set the point shape to circle
-            }
-          },
-          annotations: {
-            alwaysOutside: true
-          }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(dataTable, options);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }
-</script>
