@@ -1,9 +1,9 @@
 <?php session_start();
-$id = $_SESSION['user'];
+$id = htmlspecialchars($_SESSION['user'], ENT_QUOTES, 'UTF-8');
 echo '<script>var ID="' . $id . '";</script>'; ?>
 
-<div class="wrapper" style="border: 1px solid grey;box-shadow: 1px;justify-content: center;align-items: center;width: 20%;background-color:#bfcec2;">
-    <div class="box" style="padding: 5px;">
+<div class="wrapper" style="box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 10px; font-family: Arial, sans-serif;justify-content: center;align-items: center;width: 100%; max-width: 300px;background-color:#bfcec2; padding: 20px;">
+    <div class="box">
         <h1 class="widget-total" style="text-align:center;font-size:60px;font-weight:bolder;margin-bottom:0px;">2333</h1>
         <h4 class="widget-text" style="text-align:center;font-size:17px;font-weight:bold;margin-top:10px;">KG CO2e Saved</h4>
         <h4 class="widget-text" style="text-align:center;font-size:17px;">Active Transit users have saved<br><span class="widget-total">2334</span> KG CO2e travelling to our<br>facility this month</h4>
@@ -21,6 +21,8 @@ echo '<script>var ID="' . $id . '";</script>'; ?>
                 totalElements.forEach(function(element) {
                     element.textContent = total;
                 });
+            } else if (xhr.readyState === 4) {
+                console.error('An error occurred while fetching the data');
             }
         };
         xhr.send();

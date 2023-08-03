@@ -22,8 +22,8 @@ include('include/sidebar.php');
                 <div class="row mb-3">
                     <div class="col-lg-6">
                         <textarea id=" widget-code" rows="10" cols="100" readonly>
-                    <div class="wrapper" style="border: 1px solid grey;box-shadow: 1px;justify-content: center;align-items: center;width: 20%;background-color:#bfcec2;">
-                        <div class="box" style="padding: 5px;">
+                        <div class="wrapper" style="box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 10px; font-family: Arial, sans-serif;justify-content: center;align-items: center;width: 100%; max-width: 300px;background-color:#bfcec2; padding: 20px;">
+                        <div class="box">
                             <h1 class="widget-total" style="text-align:center;font-size:60px;font-weight:bolder;margin-bottom:0px;"></h1>
                             <h4 class="widget-text" style="text-align:center;font-size:17px;font-weight:bold;margin-top:10px;">KG CO2e Saved</h4>
                             <h4 class="widget-text" style="text-align:center;font-size:17px;">Active Transit users have saved<br><span class="widget-total"></span> KG CO2e travelling to our<br>facility this month</h4>
@@ -50,8 +50,8 @@ include('include/sidebar.php');
                     </div>
                 </div>
                 <button type="button" class="btn btn-default btn-copy js-tooltip js-copy" data-toggle="tooltip" data-placement="bottom" data-copy=' 
-                    <div class="wrapper" style="border: 1px solid grey;box-shadow: 1px;justify-content: center;align-items: center;width: 20%;background-color:#bfcec2;">
-                        <div class="box" style="padding: 5px;">
+                <div class="wrapper" style="box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 10px; font-family: Arial, sans-serif;justify-content: center;align-items: center;width: 100%; max-width: 300px;background-color:#bfcec2; padding: 20px;">
+                        <div class="box">
                             <h1 class="widget-total" style="text-align:center;font-size:60px;font-weight:bolder;margin-bottom:0px;"></h1>
                             <h4 class="widget-text" style="text-align:center;font-size:17px;font-weight:bold;margin-top:10px;">KG CO2e Saved</h4>
                             <h4 class="widget-text" style="text-align:center;font-size:17px;">Active Transit users have saved<br><span class="widget-total"></span> KG CO2e travelling to our<br>facility this month</h4>
