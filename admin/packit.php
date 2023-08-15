@@ -21,15 +21,43 @@ include('include/sidebar.php');
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="form-group">
+                    <label>Are you a Plant Based Eater, including Vegetarian or Vegan?</label>
+                    <br>
+                    <select class="form-control w-50 eating_options" required name="eating_options">
+                        <option value="">-- select option --</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="form-group plant">
                     <label>Today I packed my lunch</label>
                     <br>
-                    <select class="form-control w-50 food" required name="food[]" multiple="multiple">
+                    <select class="form-control w-50 food" required name="food[]">
                         <option value="">-- select option --</option>
+                        <option value="food delivery">Food Delivery</option>
                         <option value="home made food in a reusable container">home made food in a reusable container</option>
                         <option value="Leftovers from a restaurant">Leftovers from a restaurant</option>
+                        <option value="Lunch at a restaurant">Lunch at a restaurant</option>
+                        <option value="Lunch at cafeteria">Lunch at cafeteria</option>
+                        <option value="Meal kit">Meal kit</option>
                         <option value="packaged food">packaged food</option>
                         <option value="packaged side dish">packaged side dish</option>
-                        <option value="I didn't pack anything, I'm going out for lunch">I didn't pack anything, I'm going out for lunch</option>
+                    </select>
+                </div>
+
+                <div class="form-group meat">
+                    <label>Today I packed my lunch</label>
+                    <br>
+                    <select class="form-control w-50 food" required name="food[]">
+                        <option value="">-- select option --</option>
+                        <option value="food delivery">Food Delivery</option>
+                        <option value="home made food in a reusable container">home made food in a reusable container</option>
+                        <option value="Leftovers from a restaurant">Leftovers from a restaurant</option>
+                        <option value="Lunch at a restaurant">Lunch at a restaurant</option>
+                        <option value="Lunch at cafeteria">Lunch at cafeteria</option>
+                        <option value="Meal kit">Meal kit</option>
+                        <option value="packaged food">packaged food</option>
+                        <option value="packaged side dish">packaged side dish</option>
                     </select>
                 </div>
 
@@ -57,35 +85,98 @@ include('include/scripts.php');
 
 <script>
     $(document).ready(function() {
-        $('.food').select2();
+        $('.plant').hide();
+        $('.meat').hide();
+        // $('.food').select2();
+        // $('.eating_options').select2();
+        $('.eating_options').change(function() {
+            // If "yes" is selected, show the plant div and hide the meat div
+            if (this.value == 'yes') {
+                $('.plant').show();
+                $('.meat').hide();
+            }
+            // If "no" is selected, show the meat div and hide the plant div
+            else if (this.value == 'no') {
+                $('.meat').show();
+                $('.plant').hide();
+            }
+            // If neither "yes" nor "no" is selected, hide both divs
+            else {
+                $('.plant').hide();
+                $('.meat').hide();
+            }
+        });
     });
 </script>
 <script>
     function calcPack() {
-        var foodTable = {
-            "home made food in a reusable container": 10,
-            "Leftovers from a restaurant": 15,
-            "packaged food": 20,
-            "packaged side dish": 25,
-            "I didn't pack anything, I'm going out for lunch": 30,
+        var userId = <?php echo $id; ?>;
+        var foodTablePlant = {
+            "food delivery": 2.35,
+            "home made food in a reusable container": 1.6,
+            "Leftovers from a restaurant": 1.75,
+            "Lunch at a restaurant": 1.925,
+            "Lunch at cafeteria": 2.025,
+            "Meal kit": 2.5,
+            "packaged food": 2.35,
+            "packaged side dish": 1,
         };
 
-        var foodSelect = document.querySelector('.food');
-        var selectedOptions = Array.from(foodSelect.selectedOptions);
+        var foodTableMeat = {
+            "food delivery": 7.75,
+            "home made food in a reusable container": 7.075,
+            "Leftovers from a restaurant": 9.03,
+            "Lunch at a restaurant": 7.325,
+            "Lunch at cafeteria": 7.125,
+            "Meal kit": 6.2,
+            "packaged food": 6.55,
+            "packaged side dish": 3.95,
+        };
 
-        var total = 0;
-        var selectedOptionsList = [];
+        var eatingOption = document.querySelector(".eating_options").value;
+        var foodSelect;
 
-        selectedOptions.forEach(function(option) {
-            var value = foodTable[option.value];
-            total += value;
-            selectedOptionsList.push(option.value);
+        if (eatingOption === "yes") {
+            foodSelect = document.querySelector(".plant .food");
+        } else if (eatingOption === "no") {
+            foodSelect = document.querySelector(".meat .food");
+        } else {
+            toastr.error("Please select an eating option.");
+            return;
+        }
+
+        var selectedOptionValue = foodSelect.value;
+        var foodTable = eatingOption === "yes" ? foodTablePlant : foodTableMeat;
+
+        var value = foodTable[selectedOptionValue];
+
+        if (selectedOptionValue === "") {
+            toastr.error("Please select a food option.");
+            return;
+        } else if (value === undefined) {
+            toastr.error("Invalid food selection.");
+            return;
+        }
+
+        console.log(value); // Logs the total to the console
+        console.log(selectedOptionValue); // Logs the selectedOptionValue to the console
+
+        $.ajax({
+            url: "save_food_data.php",
+            method: "POST",
+            data: {
+                total: value,
+                selectedOptions: selectedOptionValue,
+                user_id: userId,
+            },
+            success: function(response) {
+                if (response == "success") {
+                    toastr.success("Data saved successfully.");
+                }
+            },
+            error: function(error) {
+                console.error(error);
+            },
         });
-
-        console.log(total); // Logs the total to the console
-        console.log(selectedOptionsList); // Logs the selected options to the console
-
-        toastr.success('Hello, this is a toaster message!');
-        toastr.options.closeButton = true;
     }
 </script>

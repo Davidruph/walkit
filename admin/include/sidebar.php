@@ -51,13 +51,21 @@
               <a class="nav-link" href="view-logs">View logs</a>
             </nav>
           </div>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Layoutss" aria-expanded="false" aria-controls="collapseLayouts">
+            <div class="sb-nav-link-icon"><i class="fas fa-suitcase fa-fw"></i></div>
+            PackIt
+            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+          </a>
+          <div class="collapse" id="Layoutss" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav">
+              <a class="nav-link" href="packit">New entry</a>
+              <a class="nav-link" href="packit_data">View data</a>
+            </nav>
+          </div>
+
           <a class="nav-link" href="get-widget">
             <div class="sb-nav-link-icon"><i class="fas fa-book fa-fw"></i></div>
             Get Widget
-          </a>
-          <a class="nav-link" href="packit">
-            <div class="sb-nav-link-icon"><i class="fas fa-suitcase fa-fw"></i></div>
-            PackIt
           </a>
           <a class="nav-link" href="settings">
             <div class="sb-nav-link-icon"><i class="fas fa-cog fa-fw"></i></div>
